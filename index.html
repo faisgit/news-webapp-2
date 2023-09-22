@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Nest - Daily News</title>
+    <link rel="shortcut icon" href="./images/News NEst.png" type="image/x-icon" class="rounded-full">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-primary-content">
+    <div class="navbar bg-primary-content text-black fixed -top-1 w-screen px-3  z-10 shadow">
+        <div class="navbar-start">
+            <div class="dropdown">
+                <label tabindex="0" class="btn btn-ghost lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h8m-8 6h16" />
+                    </svg>
+                </label>
+                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white rounded-box w-52 ">
+                    <li class="news-category mx-2 cursor-pointer btn btn-ghost" data-id="business">Business</li>
+                    <li class="news-category mx-2 cursor-pointer btn btn-ghost" data-id="entertainment">Entertainment
+                    </li>
+                    <li class="news-category mx-2 cursor-pointer btn btn-ghost" data-id="general">General</li>
+                    <li class="news-category mx-2 cursor-pointer btn btn-ghost" data-id="health">Health</li>
+                    <li class="news-category mx-2 cursor-pointer btn btn-ghost" data-id="science">Science</li>
+                    <li class="news-category mx-2 cursor-pointer btn btn-ghost" data-id="sports">Sports</li>
+                    <li class="news-category mx-2 cursor-pointer btn btn-ghost" data-id="technology">Technology</li>
+                </ul>
+            </div>
+            <img src="./images/News NEst.png" class=" h-16 rounded-full mt-1 ">
+        </div>
+        <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal pr-10">
+                <li class="news-category mx-2 cursor-pointer btn btn-ghost btn-sm" data-id="business">Business</li>
+                <li class="news-category mx-2 cursor-pointer btn btn-ghost btn-sm" data-id="entertainment">Entertainment
+                </li>
+                <li class="news-category mx-2 cursor-pointer btn btn-ghost btn-sm" data-id="general">General</li>
+                <li class="news-category mx-2 cursor-pointer btn btn-ghost btn-sm" data-id="health">Health</li>
+                <li class="news-category mx-2 cursor-pointer btn btn-ghost btn-sm" data-id="science">Science</li>
+                <li class="news-category mx-2 cursor-pointer btn btn-ghost btn-sm" data-id="sports">Sports</li>
+                <li class="news-category mx-2 cursor-pointer btn btn-ghost btn-sm" data-id="technology">Technology</li>
+            </ul>
+        </div>
+        <div class="navbar-end">
+            <input type="text" placeholder="Type here"
+                class="input input-bordered input-ghost input-sm w-full max-w-xs  bg-white text-black"
+                id="search-box" />
+        </div>
+    </div>
+    <div class="h-14 mb-12"></div>
+    <section id="news-container" class="flex  flex-wrap justify-center md:justify-between  items-center mb-6 px-4">
+    </section>
+    <script type="module" src="app.js"></script>
+</body>
+
+</html>
