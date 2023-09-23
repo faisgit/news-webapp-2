@@ -11,9 +11,6 @@ const fetchData = async (query) => {
       ? `https://newsapi.org/v2/top-headlines?q=${query}&country=in&apiKey=${API_KEY}`
       : ` https://newsapi.org/v2/top-headlines?category=${category}&country=${country}&apiKey=${API_KEY}`;
     let response = await fetch(url);
-    if (!response.ok) {
-      throw new error("Network is not working properly ");
-    }
     let data = await response.json();
     apiData = data.articles;
     newsCategories();
