@@ -1,74 +1,76 @@
-let API_KEY = "1be14230ed5b4618bf8494c7accbbf75";
-const searchBox = document.querySelector("#search-box");
-let apiData = [];
-let newsContainer = document.querySelector("#news-container");
-let newsCategory = document.querySelectorAll(".news-category");
-let category = "general";
-let country = 'in'
-const fetchData = async (query) => {
-  try {
-    let url = query
-      ? `https://newsapi.org/v2/top-headlines?q=${query}&country=in&apiKey=${API_KEY}`
-      : ` https://newsapi.org/v2/top-headlines?category=${category}&country=${country}&apiKey=${API_KEY}`;
-    let response = await fetch(url);
-    let data = await response.json();
-    apiData = data.articles;
-    newsCategories();
-    uiUpdate();
-  } catch (error) {
-    console.log(error);
-  }
-};
+const API_KEY = "1be14230ed5b4618bf8494c7accbbf75";
 
-function uiUpdate() {
-  newsContainer.innerHTML = "";
-  apiData.forEach((article) => {
-    let card = document.createElement('div')
-    card.className = 'card  w-96 bg-primary-content text-black  shadow-xl mb-5'
-    let cardFigure = document.createElement('figure')
-    let cardImage =  document.createElement('img')
-    cardImage.className = ' h-[236px] '
-    cardImage.setAttribute('src', article.urlToImage? article.urlToImage : 'https://images.unsplash.com/photo-1692611901268-8e24ed37ee15?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1436&q=80')
-    cardFigure.appendChild(cardImage)
-    let cardBody = document.createElement('div')
-    cardBody.className = 'card-body'
-    let cardTitle = document.createElement('h2')
-    cardTitle.className = 'card-title'
-    cardTitle.innerHTML =  JSON.stringify(article.title).slice(1, 10);
-    cardBody.appendChild(cardTitle)
-    let cardPara = document.createElement('p')
-    cardPara.innerHTML = JSON.stringify(article.description).slice(1, 45);
-    cardBody.appendChild(cardPara)
-    let cardAction = document.createElement('div')
-    cardAction.className = 'card-actions justify-end'
-    let btn = document.createElement('a')
-    btn.className ='btn btn-primary'
-    btn.setAttribute('href',article.url)
-    btn.innerHTML = 'ReadMore'
-    cardAction.appendChild(btn)
-    cardBody.appendChild(cardAction)
-    card.appendChild(cardFigure)
-    card.appendChild(cardBody)
-    newsContainer.appendChild(card);
-  });
+const searchBox = document.getElementById("search-box");
+const newsContainer = document.getElementById("news-container");
+const newsCategories = document.querySelectorAll(".news-category");
+
+let apiData = [];
+let category = "general";
+let country = "in";
+
+async function fetchData(query) {
+  const url = query
+    ? `https://newsapi.org/v2/top-headlines?q=${query}&country=${country}&apiKey=${API_KEY}` 
+    : `https://newsapi.org/v2/top-headlines?category=${category}&country=${country}&apiKey=${API_KEY}`;
+
+  const response = await fetch(url);
+  const data = await response.json();
+
+  apiData = data.articles;
+
+  updateUI();
 }
 
-searchBox.addEventListener("keypress", async (e) => {
+function updateUI() {
+  clearContainer(newsContainer);
+
+  apiData.forEach(createNewsCard); 
+}
+
+function createNewsCard(article) {
+  const card = createElement('div', 'card w-96 bg-primary-content text-black shadow-xl mb-5');
+  
+  const image = createElement('img', 'h-[236px]');
+  image.src = article.urlToImage || defaultImage;
+  
+  const title = createElement('h2', 'card-title', article.title);
+  
+  const description = createElement('p', null, article.description);
+  
+  const readMoreLink = createElement('a', 'btn btn-primary', 'Read More');
+  readMoreLink.href = article.url;
+
+  appendToCard(card, image, title, description, readMoreLink);
+
+  newsContainer.appendChild(card);
+}
+
+function createElement(tag, className, textContent) {
+  const element = document.createElement(tag);
+  element.className = className;
+  element.textContent = textContent;
+  return element;
+}
+
+function appendToCard(card, ...children) {
+  children.forEach(child => card.appendChild(child));
+}
+
+function clearContainer(container) {
+  container.innerHTML = '';
+}
+
+searchBox.addEventListener("keypress", async e => {
   if (e.key === "Enter") {
     await fetchData(searchBox.value);
   }
 });
 
-function handleCategorySelection(categoryId) {
-  category = categoryId;
-  fetchData(); // Fetch news articles for the selected category
-}
-function newsCategories() {
-  newsCategory.forEach((newscategory) => {
-    newscategory.addEventListener("click", (e) => {
-      category = e.currentTarget.dataset.id;
-      handleCategorySelection(category);
-    });
+newsCategories.forEach(category => {
+  category.addEventListener("click", e => {
+    category = e.currentTarget.dataset.id;
+    fetchData();
   });
-}
+});
+
 fetchData();
