@@ -23,7 +23,7 @@ const fetchData = async (query) => {
 
 function uiUpdate() {
   newsContainer.innerHTML = "";
-  apiData.forEach((article) => {
+  apiData.map((article) => {
     let card = document.createElement('div')
     card.className = 'card  w-96 bg-primary-content text-black  shadow-xl mb-5'
     let cardFigure = document.createElement('figure')
