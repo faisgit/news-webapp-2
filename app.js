@@ -1,26 +1,16 @@
-
-
-// let API_KEY = "1be14230ed5b4618bf8494c7accbbf75";
+const API_KEY = '1be14230ed5b4618bf8494c7accbbf75'
 const searchBox = document.querySelector("#search-box");
 let apiData = [];
 let newsContainer = document.querySelector("#news-container");
 let newsCategory = document.querySelectorAll(".news-category");
 let category = "general";
 let country = 'in'
+
 const fetchData = async (query) => {
   try {
-    const responses = await fetch('./.env');
-const text = await responses.text();
-const envVars = text.split('\n').reduce((acc, line) => {
-  const [key, value] = line.split('=');
-  acc[key] = value;
-  return acc;
-}, {});
-
-const apiKey = envVars.API_KEY;
     let url = query
-      ? `https://newsapi.org/v2/top-headlines?q=${query}&country=in&apiKey=${apiKey}`
-      : ` https://newsapi.org/v2/top-headlines?category=${category}&country=${country}&apiKey=${apiKey}`;
+      ? `https://newsapi.org/v2/top-headlines?q=${query}&country=in&apiKey=${API_KEY}`
+      : ` https://newsapi.org/v2/top-headlines?category=${category}&country=${country}&apiKey=${API_KEY}`;
     let response = await fetch(url);
     let data = await response.json();
     apiData = data.articles;
