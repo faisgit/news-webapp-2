@@ -6,20 +6,24 @@ let newsCategory = document.querySelectorAll(".news-category");
 let category = "general";
 let country = 'in'
 
-const fetchData = async (query) => {
-  try {
-    let url = query
-      ? `https://newsapi.org/v2/top-headlines?q=${query}&country=in&apiKey=${API_KEY}`
-      : ` https://newsapi.org/v2/top-headlines?category=${category}&country=${country}&apiKey=${API_KEY}`;
-    let response = await fetch(url);
-    let data = await response.json();
-    apiData = data.articles;
-    newsCategories();
-    uiUpdate();
-  } catch (error) {
-    console.log(error);
-  }
-};
+
+document.addEventListener("DOMContentLoaded" , () => {
+
+  const fetchData = async (query) => {
+    try {
+      let url = query
+        ? `https://newsapi.org/v2/top-headlines?q=${query}&country=in&apiKey=${API_KEY}`
+        : ` https://newsapi.org/v2/top-headlines?category=${category}&country=${country}&apiKey=${API_KEY}`;
+      let response = await fetch(url);
+      let data = await response.json();
+      apiData = data.articles;
+      newsCategories();
+      uiUpdate();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 
 function uiUpdate() {
   newsContainer.innerHTML = "";
@@ -73,3 +77,5 @@ function newsCategories() {
   });
 }
 fetchData();
+
+})
