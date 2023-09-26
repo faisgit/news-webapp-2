@@ -1,9 +1,9 @@
-const API_KEY = '1be14230ed5b4618bf8494c7accbbf75'
+const API_KEY = 'pub_30144e95beb84fb5b4e90b7d03c77c8c6872b'
 const searchBox = document.querySelector("#search-box");
 let apiData = [];
 let newsContainer = document.querySelector("#news-container");
 let newsCategory = document.querySelectorAll(".news-category");
-let category = "general";
+let category = "top";
 let country = 'in'
 
 
@@ -12,11 +12,12 @@ document.addEventListener("DOMContentLoaded" , () => {
   const fetchData = async (query) => {
     try {
       let url = query
-        ? `https://newsapi.org/v2/top-headlines?q=${query}&country=in&apiKey=${API_KEY}`
-        : ` https://newsapi.org/v2/top-headlines?category=${category}&country=${country}&apiKey=${API_KEY}`;
+        ? `https://newsdata.io/api/1/news?category=${category}&country=in&apikey=${API_KEY}&q=${query}`
+        : ` https://newsdata.io/api/1/news?category=${category}&country=in&apikey=${API_KEY}`;
       let response = await fetch(url);
       let data = await response.json();
-      apiData = data.articles;
+      apiData = data.results;
+      console.log(apiData)
       newsCategories();
       uiUpdate();
     } catch (error) {
@@ -33,7 +34,7 @@ function uiUpdate() {
     let cardFigure = document.createElement('figure')
     let cardImage =  document.createElement('img')
     cardImage.className = ' h-[236px] '
-    cardImage.setAttribute('src', article.urlToImage? article.urlToImage : 'https://images.unsplash.com/photo-1692611901268-8e24ed37ee15?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1436&q=80')
+    cardImage.setAttribute('src', article.image_url? article.image_url : 'https://images.unsplash.com/photo-1692611901268-8e24ed37ee15?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1436&q=80')
     cardFigure.appendChild(cardImage)
     let cardBody = document.createElement('div')
     cardBody.className = 'card-body'
@@ -79,3 +80,4 @@ function newsCategories() {
 fetchData();
 
 })
+
