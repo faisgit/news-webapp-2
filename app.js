@@ -1,3 +1,5 @@
+const showHideButton = document.getElementById('show-hide')
+const dropdownContent = document.getElementById('dropdown-content')
 const API_KEY = 'pub_30144e95beb84fb5b4e90b7d03c77c8c6872b'
 const searchBox = document.querySelector("#search-box");
 let apiData = [];
@@ -79,5 +81,16 @@ function newsCategories() {
 }
 fetchData();
 
+})
+
+showHideButton.addEventListener('click',()=>{
+    if (dropdownContent.classList.contains('hidden')) {
+        dropdownContent.classList.remove('hidden')
+        dropdownContent.classList.add('flex')
+    }
+    else{
+        dropdownContent.classList.remove('flex')
+        dropdownContent.classList.add('hidden')
+    }
 })
 

@@ -7,22 +7,22 @@
     <link rel="shortcut icon" href="./images/News NEst.png" type="image/x-icon" class="rounded-full">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-primary-content">
-    <div class="navbar bg-primary-content text-black fixed -top-1 w-screen px-3  z-10 shadow">
+<body class="bg-white text-black">
+    <div class="navbar bg-white text-black fixed -top-1 w-screen px-3  z-10 shadow">
         <div class="navbar-start">
             <div class="dropdown">
-                <label tabindex="0" class="btn btn-ghost lg:hidden">
+                <label tabindex="0" class="btn btn-ghost lg:hidden" id="show-hide">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6h16M4 12h8m-8 6h16" />
                     </svg>
                 </label>
-                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white rounded-box w-52 ">
+                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white rounded-box w-52 hidden" id="dropdown-content">
                     <li class="news-category mx-2 cursor-pointer btn btn-ghost" data-id="business">Business</li>
                     <li class="news-category mx-2 cursor-pointer btn btn-ghost" data-id="entertainment">Entertainment
                     </li>
-                    <li class="news-category mx-2 cursor-pointer btn btn-ghost" data-id="general">General</li>
+                    <li class="news-category mx-2 cursor-pointer btn btn-ghost" data-id="top">Top</li>
                     <li class="news-category mx-2 cursor-pointer btn btn-ghost" data-id="health">Health</li>
                     <li class="news-category mx-2 cursor-pointer btn btn-ghost" data-id="science">Science</li>
                     <li class="news-category mx-2 cursor-pointer btn btn-ghost" data-id="sports">Sports</li>
@@ -36,7 +36,7 @@
                 <li class="news-category mx-2 cursor-pointer btn btn-ghost btn-sm" data-id="business">Business</li>
                 <li class="news-category mx-2 cursor-pointer btn btn-ghost btn-sm" data-id="entertainment">Entertainment
                 </li>
-                <li class="news-category mx-2 cursor-pointer btn btn-ghost btn-sm" data-id="general">General</li>
+                <li class="news-category mx-2 cursor-pointer btn btn-ghost btn-sm" data-id="top">Top</li>
                 <li class="news-category mx-2 cursor-pointer btn btn-ghost btn-sm" data-id="health">Health</li>
                 <li class="news-category mx-2 cursor-pointer btn btn-ghost btn-sm" data-id="science">Science</li>
                 <li class="news-category mx-2 cursor-pointer btn btn-ghost btn-sm" data-id="sports">Sports</li>
