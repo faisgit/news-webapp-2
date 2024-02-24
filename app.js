@@ -6,7 +6,6 @@ let apiData = [];
 let newsContainer = document.querySelector("#news-container");
 let newsCategory = document.querySelectorAll(".news-category");
 let category = "top";
-let country = 'in'
 
 
 document.addEventListener("DOMContentLoaded" , () => {
@@ -51,7 +50,8 @@ function uiUpdate() {
     cardAction.className = 'card-actions justify-end'
     let btn = document.createElement('a')
     btn.className ='btn btn-primary'
-    btn.setAttribute('href',article.url)
+    btn.setAttribute('href',article.link)
+    btn.setAttribute('target',"_blank")
     btn.innerHTML = 'ReadMore'
     cardAction.appendChild(btn)
     cardBody.appendChild(cardAction)
